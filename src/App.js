@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./globe.css";
+import TextField from "@material-ui/core/TextField";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 function App() {
+  let [counter, setCounter] = useState(0)
+  const increment = () => setCounter(counter + 1);
+  let decrement = () => setCounter(counter - 1);
+  if(counter <= 0){
+    decrement = () => setCounter(0)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{counter}</h1>
+      <h2>Counter</h2>
+      <div className="numberCounter">
+        <button onClick={decrement}>
+          <RemoveIcon />
+        </button>
+        <div className="TextField-without-border-radius">
+          <TextField type="number" name="url" variant="outlined" value={counter}/>
+        </div>
+        <button onClick={increment}>
+          <AddIcon />
+        </button>
+      </div>
+    </>
   );
 }
-
 export default App;
